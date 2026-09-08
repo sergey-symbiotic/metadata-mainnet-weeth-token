@@ -1,0 +1,34 @@
+name: Report Pull Request Validation
+
+on:
+  workflow_run:
+    workflows: ["Validate Pull Request"]
+    types: [completed]
+
+concurrency:
+  group: metadata-report-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
+  queue: max
+
+permissions: {}
+
+jobs:
+  report:
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.head_repository.full_name != '' &&
+      github.event.workflow_run.head_branch != ''
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: write
+    uses: sergey-symbiotic/metadata-validation-scripts/.github/workflows/report-validation.yml@__VALIDATOR_COMMIT_SHA__
+    with:
+      implementation-ref: __VALIDATOR_COMMIT_SHA__
+      run-id: ${{ github.event.workflow_run.id }}
+      run-attempt: ${{ github.event.workflow_run.run_attempt }}
+      workflow-id: ${{ github.event.workflow_run.workflow_id }}
+      source-head-repository: ${{ github.event.workflow_run.head_repository.full_name }}
+      source-head-branch: ${{ github.event.workflow_run.head_branch }}
+      source-head-sha: ${{ github.event.workflow_run.head_sha }}
+      base-branch: main
+      source-conclusion: ${{ github.event.workflow_run.conclusion }}

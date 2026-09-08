@@ -5,6 +5,15 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
+concurrency:
+  group: metadata-full-info-${{ github.repository }}
+  queue: max
+
 jobs:
   generate:
-    uses: symbioticfi/metadata-validation-scripts/.github/workflows/full-info.yml@main
+    uses: sergey-symbiotic/metadata-validation-scripts/.github/workflows/full-info.yml@__VALIDATOR_COMMIT_SHA__
+    with:
+      implementation-ref: __VALIDATOR_COMMIT_SHA__
