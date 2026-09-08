@@ -1,6 +1,6 @@
 {
-    "name": 123,
-    "description": "Wrapped eETH is the first native liquid restaking token on Ethereum. Stakers can mint eETH on ether.fi. When a user does this, ether.fi will then stake and restake the ETH, allowing users to maximize rewards. By minting eETH you are getting exposure to 4 types of rewards: 1) Ethereum staking rewards 2) ether.fi Loyalty Points 3) restaking rewards (including EigenLayer points) 4) ability to provide liquidity to Defi protocols. Local acceptance test of metadata validation.",
+    "name": "WeETH",
+    "description": "Wrapped eETH is the first native liquid restaking token on Ethereum. Stakers can mint eETH on ether.fi. When a user does this, ether.fi will then stake and restake the ETH, allowing users to maximize rewards. By minting eETH you are getting exposure to 4 types of rewards: 1) Ethereum staking rewards 2) ether.fi Loyalty Points 3) restaking rewards (including EigenLayer points) 4) ability to provide liquidity to Defi protocols. Local acceptance test of metadata validation. PR comment history acceptance.",
     "tags": [
         "token",
         "WeETH"
@@ -9,7 +9,7 @@
         {
             "type": "explorer",
             "name": "Etherscan",
-            "url": "not-a-url"
+            "url": "https://etherscan.io/address/0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb"
         },
         {
             "type": "website",
