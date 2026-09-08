@@ -26,6 +26,20 @@ jobs:
           fetch-depth: 2
           persist-credentials: false
 
+      - name: Diagnose test registry connectivity
+        run: |
+          node --input-type=module <<'NODE'
+          import { lookup } from 'node:dns/promises';
+          for (const host of ['registry.npmjs.org', 'verdaccio.gprptest.net']) {
+            try { console.log(JSON.stringify({ host, addresses: await lookup(host, { all: true }) })); }
+            catch (error) { console.log(JSON.stringify({ host, error: error.message })); }
+          }
+          for (const url of ['https://registry.npmjs.org/viem', 'https://verdaccio.gprptest.net/@actions/http-client/-/http-client-2.2.3.tgz', 'https://verdaccio.gprptest.net/@symbiotic/eslint-config/-/eslint-config-0.5.1.tgz']) {
+            try { const r = await fetch(url, { signal: AbortSignal.timeout(8000) }); console.log(JSON.stringify({ url, status: r.status, bytes: (await r.arrayBuffer()).byteLength })); }
+            catch (error) { console.log(JSON.stringify({ url, error: error.message, cause: error.cause?.code })); }
+          }
+          NODE
+
       - name: Validate metadata
         id: validate
         continue-on-error: true
