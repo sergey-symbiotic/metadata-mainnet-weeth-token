@@ -21,9 +21,9 @@ jobs:
       actions: read
       contents: read
       pull-requests: write
-    uses: sergey-symbiotic/metadata-validation-scripts/.github/workflows/report-validation.yml@4717a7ffa3fd26bdfb2db3f65d09c11394e1b437
+    uses: sergey-symbiotic/metadata-validation-scripts/.github/workflows/report-validation.yml@5db4ac5ff5e4171b01ace750c9ee46ebae351f42
     with:
-      implementation-ref: 4717a7ffa3fd26bdfb2db3f65d09c11394e1b437
+      implementation-ref: 5db4ac5ff5e4171b01ace750c9ee46ebae351f42
       run-id: ${{ github.event.workflow_run.id }}
       run-attempt: ${{ github.event.workflow_run.run_attempt }}
       workflow-id: ${{ github.event.workflow_run.workflow_id }}
